@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brxof</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2d1b69 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover::before {
+            left: 0;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            margin-top: 100px;
+            padding: 40px;
+            text-align: center;
+            min-height: calc(100vh - 100px);
+        }
+
+        .welcome-section {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #E5E7EB;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+            border-radius: 25px;
+        }
+
+        .social-btn:hover::before {
+            left: 0;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Правильная иконка Telegram */
+        .telegram-icon {
+            fill: white;
+        }
+
+        /* Цвета для разных платформ при наведении */
+        .telegram:hover {
+            background: rgba(0, 136, 204, 0.3);
+            border-color: rgba(0, 136, 204, 0.5);
+        }
+
+        .youtube:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.5);
+        }
+
+        .tiktok:hover {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Скромная кнопка доната */
+        .donate-subtle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            color: #FF8E8E;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .donate-subtle-btn:hover {
+            background: rgba(255, 107, 107, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+            color: #FF6B6B;
+        }
+
+        /* Разделительная линия */
+        .divider {
+            width: 80%;
+            max-width: 400px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%);
+            margin: 40px auto 60px;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #8B5CF6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #8B5CF6;
+        }
+
+        /* Секция связи */
+        .contact-section {
+            margin-top: 40px;
+        }
+
+        .contact-text {
+            font-size: 20px;
+            color: #E5E7EB;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .contact-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Расписание стримов */
+        .schedule-section {
+            margin: 60px auto;
+            max-width: 500px;
+        }
+
+        .schedule-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .day {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .time {
+            font-size: 16px;
+            color: #A78BFA;
+        }
+
+        /* Секция поддержки */
+        .support-section {
+            margin: 40px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .support-text {
+            font-size: 16px;
+            color: #E5E7EB;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        /* Стили для страницы проектов */
+        .project-page {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            min-height: calc(100vh - 100px);
+            padding: 40px;
+            position: relative;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 90px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .project-title {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .version-badge {
+            background: rgba(139, 92, 246, 0.3);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.5);
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .install-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .donate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #2d1b69 0%, #1a1a1a 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .modal h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal p {
+            color: #E5E7EB;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-section">
+            <a href="#" class="logo" onclick="showHomePage()">Brxof</a>
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="showProjectsPage()">Проекты</a>
+            <a href="#" onclick="showShopModal()">Магазин</a>
+        </div>
+    </nav>
+
+    <!-- Главная страница -->
+    <div class="content" id="homePage">
+        <div class="welcome-section">
+            <h1>Добро Пожаловать</h1>
+            <p class="subtitle">Присоединяйтесь к нашему сообществу в социальных сетях и будьте в курсе всех событий</p>
+        </div>
+
+        <div class="social-buttons">
+            <a href="https://t.me/brxof" class="social-btn telegram" target="_blank">
+                <svg class="social-icon telegram-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.14-.26.26-.535.26l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                </svg>
+                Telegram
+            </a>
+            
+            <a href="#" class="social-btn youtube">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                </svg>
+                YouTube
+            </a>
+            
+            <a href="https://www.tiktok.com/@brxof.ofical" class="social-btn tiktok" target="_blank">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
+                </svg>
+                TikTok
+            </a>
+        </div>
+
+        <!-- Разделительная линия -->
+        <div class="divider"></div>
+
+        <!-- Расписание стримов -->
+        <div class="schedule-section">
+            <h2 class="schedule-title">Расписание стримов</h2>
+            <div class="schedule-item">
+                <span class="day">Пятница</span>
+                <span class="time">17:00 по --:--</span>
+            </div>
+            <div class="schedule-item">
+                <span class="day">Суббота</span>
+                <span class="time">15:00 по --:--</span>
+            </div>
+            <div class="schedule-item">
+                <span class="day">Воскресенье</span>
+                <span class="time">15:00 по 20:00</span>
+            </div>
+        </div>
+
+        <!-- Секция поддержки -->
+        <div class="support-section">
+            <p class="support-text">Если вам нравится мой контент, вы можете поддержать меня</p>
+            <a href="https://www.donationalerts.com/r/brxofrobloxer" class="donate-subtle-btn" target="_blank">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                Поддержать
+            </a>
+        </div>
+
+        <!-- Разделительная линия -->
+        <div class="divider"></div>
+
+        <!-- Секция связи -->
+        <div class="contact-section">
+            <p class="contact-text">Есть идеи или вопросы? Напиши мне!</p>
+            <a href="https://t.me/brxof" class="contact-btn" target="_blank">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                Написать
+            </a>
+        </div>
+    </div>
+
+    <!-- Страница проектов -->
+    <div class="project-page" id="projectsPage">
+        <a href="#" class="back-button" onclick="showHomePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+        </a>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="welcome-section" style="text-align: center;">
+                <h1>Мои Проекты</h1>
+                <p class="subtitle">Здесь вы найдете все мои текущие и завершенные проекты</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">ControlManager</div>
+                    <div class="version-badge">v1.3</div>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="install-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Установить
+                    </a>
+                    <a href="https://www.donationalerts.com/r/brxofrobloxer" class="donate-btn" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        Донат
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для Магазина -->
+    <div class="modal" id="shopModal">
+        <div class="modal-content">
+            <h3>Магазин</h3>
+            <p>Скоро будет...</p>
+            <button class="modal-btn" onclick="closeShopModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        // Функции для переключения страниц
+        function showHomePage() {
+            document.getElementById('homePage').style.display = 'block';
+            document.getElementById('projectsPage').style.display = 'none';
+        }
+
+        function showProjectsPage() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('projectsPage').style.display = 'block';
+        }
+
+        // Функции для модального окна Магазина
+        function showShopModal() {
+            document.getElementById('shopModal').style.display = 'flex';
+        }
+
+        function closeShopModal() {
+            document.getElementById('shopModal').style.display = 'none';
+        }
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('shopModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeShopModal();
+            }
+        });
+
+        // Показываем главную страницу при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            showHomePage();
+        });
+    </script>
+</body>
+</html>
