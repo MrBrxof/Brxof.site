@@ -480,6 +480,68 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
         }
 
+        /* Стили для FAQ */
+        .faq-section {
+            margin: 40px auto;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+
+        .faq-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #E5E7EB;
+            line-height: 1.5;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
         /* Медиа-запросы для адаптивности */
         @media (min-width: 768px) {
             .navbar {
@@ -550,6 +612,10 @@
             .project-buttons {
                 flex-direction: row;
             }
+            
+            .faq-section {
+                max-width: 600px;
+            }
         }
     </style>
 </head>
@@ -611,6 +677,9 @@
             </div>
         </div>
 
+        <!-- Разделительная линия -->
+        <div class="divider"></div>
+
         <!-- Секция поддержки -->
         <div class="support-section">
             <p class="support-text">Если вам нравится мой контент, вы можете поддержать меня</p>
@@ -634,6 +703,50 @@
                 </svg>
                 Написать
             </a>
+        </div>
+
+        <!-- Разделительная линия -->
+        <div class="divider"></div>
+
+        <!-- Секция FAQ в самом низу -->
+        <div class="faq-section">
+            <h2 class="faq-title">Часто задаваемые вопросы</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Где взять Robux бесплатно?</span>
+                    <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    В боте которого я скоро сюда добавлю
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Какой у тебя ник в Roblox?</span>
+                    <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    Rostistik2012
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Сколько тебе лет?</span>
+                    <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    Сколько есть,все мои)
+                </div>
+            </div>
         </div>
     </div>
 
@@ -686,8 +799,27 @@
             document.getElementById('projectsPage').style.display = 'block';
         }
 
-        // Показываем главную страницу при загрузке
+        // Функция для работы аккордеона FAQ
         document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Закрываем все остальные открытые вопросы
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Переключаем текущий вопрос
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Показываем главную страницу при загрузке
             showHomePage();
         });
     </script>
