@@ -24,7 +24,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 40px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -35,14 +35,8 @@
             z-index: 1000;
         }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: white;
             text-decoration: none;
@@ -50,14 +44,14 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 15px;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 16px;
-            padding: 8px 16px;
+            font-size: 14px;
+            padding: 8px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
             position: relative;
@@ -86,19 +80,19 @@
         }
 
         .content {
-            margin-top: 100px;
-            padding: 40px;
+            margin-top: 80px;
+            padding: 20px;
             text-align: center;
-            min-height: calc(100vh - 100px);
+            min-height: calc(100vh - 80px);
         }
 
         .welcome-section {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 36px;
+            margin-bottom: 15px;
             background: linear-gradient(45deg, #8B5CF6, #A78BFA);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -106,26 +100,31 @@
         }
 
         .subtitle {
-            font-size: 18px;
-            line-height: 1.6;
+            font-size: 16px;
+            line-height: 1.5;
             color: #E5E7EB;
-            max-width: 600px;
-            margin: 0 auto 40px;
+            max-width: 100%;
+            margin: 0 auto 30px;
+            padding: 0 10px;
         }
 
         .social-buttons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            width: 100%;
         }
 
         .social-btn {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 12px 24px;
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 300px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -191,8 +190,11 @@
         .donate-subtle-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             padding: 12px 25px;
+            width: 100%;
+            max-width: 300px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 107, 107, 0.3);
@@ -214,14 +216,14 @@
 
         /* Разделительная линия */
         .divider {
-            width: 80%;
+            width: 90%;
             max-width: 400px;
             height: 1px;
             background: linear-gradient(90deg, 
                 transparent 0%, 
                 rgba(255, 255, 255, 0.3) 50%, 
                 transparent 100%);
-            margin: 40px auto 60px;
+            margin: 30px auto 40px;
             position: relative;
         }
 
@@ -240,27 +242,30 @@
 
         /* Секция связи */
         .contact-section {
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .contact-text {
-            font-size: 20px;
+            font-size: 18px;
             color: #E5E7EB;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-weight: 300;
         }
 
         .contact-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
-            padding: 15px 35px;
+            padding: 15px 30px;
+            width: 100%;
+            max-width: 300px;
             background: linear-gradient(45deg, #8B5CF6, #7C3AED);
             border: none;
             border-radius: 30px;
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
@@ -303,13 +308,14 @@
 
         /* Расписание стримов */
         .schedule-section {
-            margin: 60px auto;
-            max-width: 500px;
+            margin: 40px auto;
+            max-width: 100%;
+            padding: 0 10px;
         }
 
         .schedule-title {
-            font-size: 28px;
-            margin-bottom: 30px;
+            font-size: 24px;
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #8B5CF6, #A78BFA);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -320,33 +326,34 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 15px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .day {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
         }
 
         .time {
-            font-size: 16px;
+            font-size: 14px;
             color: #A78BFA;
         }
 
         /* Секция поддержки */
         .support-section {
-            margin: 40px auto;
-            max-width: 500px;
+            margin: 30px auto;
+            max-width: 100%;
             text-align: center;
+            padding: 0 10px;
         }
 
         .support-text {
-            font-size: 16px;
+            font-size: 15px;
             color: #E5E7EB;
             margin-bottom: 15px;
             font-weight: 300;
@@ -355,23 +362,23 @@
         /* Стили для страницы проектов */
         .project-page {
             display: none;
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             text-align: left;
-            min-height: calc(100vh - 100px);
-            padding: 40px;
+            min-height: calc(100vh - 80px);
+            padding: 20px;
             position: relative;
         }
 
         .back-button {
             position: fixed;
-            top: 90px;
-            left: 40px;
+            top: 75px;
+            left: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -392,8 +399,8 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 25px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 20px;
         }
@@ -402,11 +409,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .project-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             background: linear-gradient(45deg, #8B5CF6, #A78BFA);
             -webkit-background-clip: text;
@@ -416,24 +423,25 @@
 
         .version-badge {
             background: rgba(139, 92, 246, 0.3);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 15px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             border: 1px solid rgba(139, 92, 246, 0.5);
         }
 
         .project-buttons {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .install-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 12px 30px;
+            padding: 12px 20px;
             background: linear-gradient(45deg, #8B5CF6, #7C3AED);
             border: none;
             border-radius: 25px;
@@ -453,8 +461,9 @@
         .donate-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 12px 30px;
+            padding: 12px 20px;
             background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
             border: none;
             border-radius: 25px;
@@ -471,69 +480,84 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
         }
 
-        /* Модальное окно */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #2d1b69 0%, #1a1a1a 100%);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .modal h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal p {
-            color: #E5E7EB;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .modal-btn {
-            padding: 10px 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+        /* Медиа-запросы для адаптивности */
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 20px 40px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .nav-links a {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            
+            .content {
+                margin-top: 100px;
+                padding: 40px;
+            }
+            
+            h1 {
+                font-size: 48px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+                max-width: 600px;
+            }
+            
+            .social-buttons {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .social-btn {
+                width: auto;
+            }
+            
+            .donate-subtle-btn {
+                width: auto;
+            }
+            
+            .contact-btn {
+                width: auto;
+            }
+            
+            .schedule-section {
+                max-width: 500px;
+            }
+            
+            .project-page {
+                max-width: 800px;
+                padding: 40px;
+            }
+            
+            .back-button {
+                top: 90px;
+                left: 40px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .project-buttons {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo-section">
-            <a href="#" class="logo" onclick="showHomePage()">Brxof</a>
-        </div>
+        <a href="#" class="logo" onclick="showHomePage()">Brxof</a>
         <div class="nav-links">
             <a href="#" onclick="showProjectsPage()">Проекты</a>
-            <a href="#" onclick="showShopModal()">Магазин</a>
         </div>
     </nav>
 
@@ -621,7 +645,7 @@
             </svg>
         </a>
 
-        <div style="max-width: 800px; margin: 0 auto;">
+        <div style="max-width: 100%; margin: 0 auto;">
             <div class="welcome-section" style="text-align: center;">
                 <h1>Мои Проекты</h1>
                 <p class="subtitle">Здесь вы найдете все мои текущие и завершенные проекты</p>
@@ -650,15 +674,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно для Магазина -->
-    <div class="modal" id="shopModal">
-        <div class="modal-content">
-            <h3>Магазин</h3>
-            <p>Скоро будет...</p>
-            <button class="modal-btn" onclick="closeShopModal()">Закрыть</button>
-        </div>
-    </div>
-
     <script>
         // Функции для переключения страниц
         function showHomePage() {
@@ -670,22 +685,6 @@
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('projectsPage').style.display = 'block';
         }
-
-        // Функции для модального окна Магазина
-        function showShopModal() {
-            document.getElementById('shopModal').style.display = 'flex';
-        }
-
-        function closeShopModal() {
-            document.getElementById('shopModal').style.display = 'none';
-        }
-
-        // Закрытие модального окна при клике вне его
-        document.getElementById('shopModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeShopModal();
-            }
-        });
 
         // Показываем главную страницу при загрузке
         document.addEventListener('DOMContentLoaded', function() {
