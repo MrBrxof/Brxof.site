@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brxof</title>
+    <title>Brxof - Новогоднее настроение</title>
     <style>
         * {
             margin: 0;
@@ -13,10 +13,36 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #2d1b69 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #1a0f3e 0%, #0d0d0d 100%);
             min-height: 100vh;
             color: white;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Эффект снега */
+        #snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
 
         .navbar {
@@ -40,6 +66,19 @@
             font-weight: bold;
             color: white;
             text-decoration: none;
+            position: relative;
+        }
+
+        .logo::after {
+            content: "🎄";
+            position: absolute;
+            right: -25px;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .nav-links {
@@ -84,19 +123,40 @@
             padding: 20px;
             text-align: center;
             min-height: calc(100vh - 80px);
+            position: relative;
+            z-index: 2;
         }
 
         .welcome-section {
             margin-bottom: 40px;
+            position: relative;
         }
 
         h1 {
             font-size: 36px;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            background: linear-gradient(45deg, #8B5CF6, #FF6B6B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: "🎅";
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        h1::after {
+            content: "🎁";
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .subtitle {
@@ -107,6 +167,24 @@
             margin: 0 auto 30px;
             padding: 0 10px;
         }
+
+        /* Новогодние украшения */
+        .ornament {
+            position: absolute;
+            font-size: 24px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .ornament-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .ornament-2 { top: 20%; right: 5%; animation-delay: 0.5s; }
+        .ornament-3 { bottom: 30%; left: 10%; animation-delay: 1s; }
+        .ornament-4 { bottom: 20%; right: 10%; animation-delay: 1.5s; }
 
         .social-buttons {
             display: flex;
@@ -165,11 +243,6 @@
             height: 20px;
         }
 
-        /* Правильная иконка Telegram */
-        .telegram-icon {
-            fill: white;
-        }
-
         /* Цвета для разных платформ при наведении */
         .telegram:hover {
             background: rgba(0, 136, 204, 0.3);
@@ -186,7 +259,239 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Скромная кнопка доната */
+        /* Красный штамп "Не доступно" */
+        .stamp {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 10px 20px;
+            border: 3px solid #ff0000;
+            border-radius: 5px;
+            opacity: 0.8;
+            background: rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .stamp::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed #ff0000;
+            border-radius: 10px;
+            opacity: 0.5;
+        }
+
+        /* Разделительная линия с новогодней тематикой */
+        .divider {
+            width: 90%;
+            max-width: 400px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%);
+            margin: 30px auto 40px;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '❄️';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+        }
+
+        /* Секция серверов */
+        .servers-section {
+            margin: 40px auto;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+
+        .servers-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #8B5CF6, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .server-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .server-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .server-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .server-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .server-status.online {
+            background: rgba(76, 175, 80, 0.3);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            color: #4CAF50;
+        }
+
+        .server-status.offline {
+            background: rgba(244, 67, 54, 0.3);
+            border: 1px solid rgba(244, 67, 54, 0.5);
+            color: #F44336;
+        }
+
+        .server-status.checking {
+            background: rgba(255, 193, 7, 0.3);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            color: #FFC107;
+        }
+
+        .server-info {
+            text-align: left;
+            margin-bottom: 15px;
+            color: #E5E7EB;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .server-online-info {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .server-online-info.online {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+        }
+
+        .server-online-info.online::before {
+            content: "🟢";
+            font-size: 14px;
+        }
+
+        .server-online-info.offline {
+            background: rgba(158, 158, 158, 0.2);
+            border: 1px solid rgba(158, 158, 158, 0.3);
+            color: #9E9E9E;
+        }
+
+        .server-online-info.offline::before {
+            content: "⚫";
+            font-size: 14px;
+        }
+
+        .server-online-info.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #F44336;
+        }
+
+        .server-online-info.error::before {
+            content: "⚠️";
+            font-size: 14px;
+        }
+
+        .server-online-info.checking {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            color: #FFC107;
+        }
+
+        .server-online-info.checking::before {
+            content: "⏳";
+            font-size: 14px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .server-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .server-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .server-btn.copy {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+        }
+
+        .server-btn.download {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+        }
+
+        .server-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Остальные стили остаются без изменений */
         .donate-subtle-btn {
             display: inline-flex;
             align-items: center;
@@ -214,33 +519,6 @@
             color: #FF6B6B;
         }
 
-        /* Разделительная линия */
-        .divider {
-            width: 90%;
-            max-width: 400px;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.3) 50%, 
-                transparent 100%);
-            margin: 30px auto 40px;
-            position: relative;
-        }
-
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: #8B5CF6;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #8B5CF6;
-        }
-
-        /* Секция связи */
         .contact-section {
             margin-top: 30px;
         }
@@ -273,40 +551,11 @@
             overflow: hidden;
         }
 
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
-                transparent);
-            transition: left 0.5s ease;
-        }
-
-        .contact-btn:hover::before {
-            left: 100%;
-        }
-
         .contact-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
         }
 
-        .contact-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .contact-icon {
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) invert(1);
-        }
-
-        /* Расписание стримов */
         .schedule-section {
             margin: 40px auto;
             max-width: 100%;
@@ -316,7 +565,7 @@
         .schedule-title {
             font-size: 24px;
             margin-bottom: 25px;
-            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            background: linear-gradient(45deg, #8B5CF6, #FF6B6B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -334,17 +583,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .day {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .time {
-            font-size: 14px;
-            color: #A78BFA;
-        }
-
-        /* Секция поддержки */
         .support-section {
             margin: 30px auto;
             max-width: 100%;
@@ -359,7 +597,6 @@
             font-weight: 300;
         }
 
-        /* Стили для страницы проектов */
         .project-page {
             display: none;
             max-width: 100%;
@@ -368,6 +605,7 @@
             min-height: calc(100vh - 80px);
             padding: 20px;
             position: relative;
+            z-index: 2;
         }
 
         .back-button {
@@ -403,6 +641,13 @@
             margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card.disabled {
+            opacity: 0.7;
+            filter: grayscale(0.5);
         }
 
         .project-header {
@@ -415,7 +660,7 @@
         .project-title {
             font-size: 24px;
             font-weight: bold;
-            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            background: linear-gradient(45deg, #8B5CF6, #FF6B6B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -451,11 +696,9 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
-        }
-
-        .install-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+            cursor: pointer;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         .donate-btn {
@@ -475,12 +718,6 @@
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
         }
 
-        .donate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
-        }
-
-        /* Стили для FAQ */
         .faq-section {
             margin: 40px auto;
             max-width: 100%;
@@ -490,7 +727,7 @@
         .faq-title {
             font-size: 24px;
             margin-bottom: 25px;
-            background: linear-gradient(45deg, #8B5CF6, #A78BFA);
+            background: linear-gradient(45deg, #8B5CF6, #FF6B6B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -516,14 +753,6 @@
             transition: all 0.3s ease;
         }
 
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .faq-icon {
-            transition: transform 0.3s ease;
-        }
-
         .faq-answer {
             padding: 0 20px;
             max-height: 0;
@@ -542,7 +771,7 @@
             transform: rotate(180deg);
         }
 
-        /* Медиа-запросы для адаптивности */
+        /* Медиа-запросы */
         @media (min-width: 768px) {
             .navbar {
                 padding: 20px 40px;
@@ -616,10 +845,27 @@
             .faq-section {
                 max-width: 600px;
             }
+            
+            .servers-section {
+                max-width: 600px;
+            }
+            
+            .server-buttons {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Эффект снега -->
+    <div id="snow"></div>
+    
+    <!-- Новогодние украшения -->
+    <div class="ornament ornament-1">✨</div>
+    <div class="ornament ornament-2">⭐</div>
+    <div class="ornament ornament-3">🎄</div>
+    <div class="ornament ornament-4">🎅</div>
+
     <nav class="navbar">
         <a href="#" class="logo" onclick="showHomePage()">Brxof</a>
         <div class="nav-links">
@@ -657,7 +903,54 @@
             </a>
         </div>
 
-        <!-- Разделительная линия -->
+        <div class="divider"></div>
+
+        <!-- Секция серверов -->
+        <div class="servers-section">
+            <h2 class="servers-title">НА КАКИХ СЕРВЕРАХ Я ИГРАЮ?</h2>
+            
+            <div class="server-card" id="reallyworld-card">
+                <div class="server-header">
+                    <div class="server-name">ReallyWorld</div>
+                    <div class="server-status checking" id="reallyworld-status">Проверка...</div>
+                </div>
+                <div class="server-info">
+                    IP: mc.reallyworld.ru<br>
+                    Версия: 1.12.2 - 1.21.x<br>
+                    <div class="server-online-info checking" id="reallyworld-online-status">
+                        Проверяю, играю ли я на сервере...
+                    </div>
+                </div>
+                <div class="server-buttons">
+                    <button class="server-btn copy" onclick="copyIP('mc.reallyworld.ru', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        Скопировать IP
+                    </button>
+                </div>
+            </div>
+            
+            <div class="server-card" id="hackmine-card">
+                <div class="server-header">
+                    <div class="server-name">HackMine</div>
+                    <div class="server-status online">Онлайн</div>
+                </div>
+                <div class="server-info">
+                    Сайт: minecraft.nedohackers.site<br>
+                    Популярный сервер с модами
+                </div>
+                <div class="server-buttons">
+                    <a href="https://minecraft.nedohackers.site/" class="server-btn download" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Скачать лаунчер
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="divider"></div>
 
         <!-- Расписание стримов -->
@@ -677,7 +970,6 @@
             </div>
         </div>
 
-        <!-- Разделительная линия -->
         <div class="divider"></div>
 
         <!-- Секция поддержки -->
@@ -691,7 +983,6 @@
             </a>
         </div>
 
-        <!-- Разделительная линия -->
         <div class="divider"></div>
 
         <!-- Секция связи -->
@@ -705,10 +996,9 @@
             </a>
         </div>
 
-        <!-- Разделительная линия -->
         <div class="divider"></div>
 
-        <!-- Секция FAQ в самом низу -->
+        <!-- Секция FAQ -->
         <div class="faq-section">
             <h2 class="faq-title">Часто задаваемые вопросы</h2>
             
@@ -760,22 +1050,25 @@
 
         <div style="max-width: 100%; margin: 0 auto;">
             <div class="welcome-section" style="text-align: center;">
-                <h1>Мои Проекты</h1>
+                <h1 style="background: linear-gradient(45deg, #8B5CF6, #FF6B6B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Мои Проекты</h1>
                 <p class="subtitle">Здесь вы найдете все мои текущие и завершенные проекты</p>
             </div>
 
-            <div class="project-card">
+            <div class="project-card disabled">
+                <!-- Красный штамп -->
+                <div class="stamp">СЕЙЧАС НЕ ДОСТУПНО</div>
+                
                 <div class="project-header">
                     <div class="project-title">ControlManager</div>
                     <div class="version-badge">v1.3</div>
                 </div>
                 <div class="project-buttons">
-                    <a href="#" class="install-btn">
+                    <button class="install-btn" onclick="showNotAvailable()">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                         </svg>
                         Установить
-                    </a>
+                    </button>
                     <a href="https://www.donationalerts.com/r/brxofrobloxer" class="donate-btn" target="_blank">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -788,6 +1081,98 @@
     </div>
 
     <script>
+        // Создаем эффект снега
+        function createSnow() {
+            const snowContainer = document.getElementById('snow');
+            const snowflakesCount = 50;
+            
+            for (let i = 0; i < snowflakesCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                
+                // Случайные размеры
+                const size = Math.random() * 5 + 3;
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                
+                // Случайная позиция
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                
+                // Случайная прозрачность
+                snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                // Случайная скорость
+                const duration = Math.random() * 10 + 5;
+                snowflake.style.animationDuration = `${duration}s`;
+                
+                // Случайная задержка
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        // Функция копирования IP
+        function copyIP(ip, buttonElement) {
+            navigator.clipboard.writeText(ip)
+                .then(() => {
+                    // Сохраняем оригинальный HTML кнопки
+                    const originalHTML = buttonElement.innerHTML;
+                    
+                    // Меняем текст и иконку на кнопке
+                    buttonElement.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Скопировано!
+                    `;
+                    
+                    // Меняем стиль кнопки на успешный
+                    buttonElement.style.background = 'linear-gradient(45deg, #2E7D32, #1B5E20)';
+                    
+                    // Восстанавливаем через 2 секунды
+                    setTimeout(() => {
+                        buttonElement.innerHTML = originalHTML;
+                        buttonElement.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Ошибка копирования: ', err);
+                    
+                    // Альтернативный способ копирования для старых браузеров
+                    const textArea = document.createElement('textarea');
+                    textArea.value = ip;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        
+                        // Показываем уведомление об успешном копировании
+                        const originalHTML = buttonElement.innerHTML;
+                        buttonElement.innerHTML = `
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            Скопировано!
+                        `;
+                        
+                        setTimeout(() => {
+                            buttonElement.innerHTML = originalHTML;
+                        }, 2000);
+                        
+                    } catch (err2) {
+                        console.error('Не удалось скопировать текст: ', err2);
+                        alert('Не удалось скопировать IP. Скопируйте вручную: ' + ip);
+                    }
+                    document.body.removeChild(textArea);
+                });
+        }
+
+        // Функция показа уведомления
+        function showNotAvailable() {
+            alert('Данный проект временно недоступен. Пожалуйста, проверьте позже.');
+        }
+
         // Функции для переключения страниц
         function showHomePage() {
             document.getElementById('homePage').style.display = 'block';
@@ -799,28 +1184,134 @@
             document.getElementById('projectsPage').style.display = 'block';
         }
 
-        // Функция для работы аккордеона FAQ
+        // Функция проверки статуса сервера и игрока
+        async function checkServerAndPlayerStatus() {
+            const serverIP = 'mc.reallyworld.ru';
+            const playerUsername = 'MrBrxof'; // Твой ник в Minecraft
+            
+            const statusElement = document.getElementById('reallyworld-status');
+            const onlineStatusElement = document.getElementById('reallyworld-online-status');
+            
+            try {
+                // Сначала проверяем статус сервера через API
+                const serverResponse = await fetch(`https://api.mcsrvstat.us/2/${serverIP}`);
+                const serverData = await serverResponse.json();
+                
+                if (serverData.online) {
+                    // Сервер онлайн
+                    statusElement.textContent = 'Онлайн';
+                    statusElement.className = 'server-status online';
+                    
+                    // Проверяем, есть ли игрок на сервере
+                    if (serverData.players && serverData.players.list) {
+                        const players = serverData.players.list;
+                        const isPlayerOnline = players.some(player => 
+                            player.toLowerCase() === playerUsername.toLowerCase()
+                        );
+                        
+                        if (isPlayerOnline) {
+                            onlineStatusElement.textContent = `🟢 Я сейчас онлайн на сервере! (Игроков: ${serverData.players.online}/${serverData.players.max})`;
+                            onlineStatusElement.className = 'server-online-info online';
+                        } else {
+                            onlineStatusElement.textContent = `⚫ Сейчас меня нет на сервере (Игроков: ${serverData.players.online}/${serverData.players.max})`;
+                            onlineStatusElement.className = 'server-online-info offline';
+                        }
+                    } else {
+                        // Не удалось получить список игроков
+                        onlineStatusElement.textContent = `Сервер онлайн (${serverData.players ? serverData.players.online : '?'} игроков)`;
+                        onlineStatusElement.className = 'server-online-info online';
+                    }
+                } else {
+                    // Сервер оффлайн
+                    statusElement.textContent = 'Оффлайн';
+                    statusElement.className = 'server-status offline';
+                    onlineStatusElement.textContent = 'Сервер временно недоступен';
+                    onlineStatusElement.className = 'server-online-info offline';
+                }
+                
+            } catch (error) {
+                console.error('Ошибка при проверке сервера:', error);
+                
+                // Если API не работает, пробуем альтернативный метод
+                try {
+                    // Альтернативный API
+                    const altResponse = await fetch(`https://api.minetools.eu/ping/${serverIP}`);
+                    const altData = await altResponse.json();
+                    
+                    if (altData && altData.description) {
+                        statusElement.textContent = 'Онлайн';
+                        statusElement.className = 'server-status online';
+                        onlineStatusElement.textContent = 'Сервер онлайн (не могу проверить игроков)';
+                        onlineStatusElement.className = 'server-online-info online';
+                    } else {
+                        throw new Error('Альтернативный API тоже не работает');
+                    }
+                } catch (altError) {
+                    console.error('Альтернативный API тоже не работает:', altError);
+                    
+                    statusElement.textContent = 'Ошибка проверки';
+                    statusElement.className = 'server-status offline';
+                    onlineStatusElement.textContent = 'Не удалось проверить статус сервера';
+                    onlineStatusElement.className = 'server-online-info error';
+                }
+            }
+        }
+
+        // Функция проверки Minecraft UUID (для проверки существования ника)
+        async function checkMinecraftPlayer(username) {
+            try {
+                const response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${username}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return {
+                        exists: true,
+                        uuid: data.id,
+                        name: data.name
+                    };
+                } else {
+                    return { exists: false };
+                }
+            } catch (error) {
+                console.error('Ошибка при проверке игрока:', error);
+                return { exists: false, error: error.message };
+            }
+        }
+
+        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
+            // Создаем снег
+            createSnow();
+            
+            // Работа с FAQ
             const faqItems = document.querySelectorAll('.faq-item');
             
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
                 
                 question.addEventListener('click', () => {
-                    // Закрываем все остальные открытые вопросы
                     faqItems.forEach(otherItem => {
                         if (otherItem !== item && otherItem.classList.contains('active')) {
                             otherItem.classList.remove('active');
                         }
                     });
                     
-                    // Переключаем текущий вопрос
                     item.classList.toggle('active');
                 });
             });
             
-            // Показываем главную страницу при загрузке
+            // Проверяем статус сервера и игрока
+            checkServerAndPlayerStatus();
+            
+            // Обновляем статус каждые 2 минуты
+            setInterval(checkServerAndPlayerStatus, 120000);
+            
+            // Показываем главную страницу
             showHomePage();
+            
+            // Добавляем новогоднее поздравление в консоль
+            console.log('🎄 С Новым Годом! Спасибо за использование сайта Brxof! 🎅');
+            console.log('👤 Minecraft ник: MrBrxof');
+            console.log('🌐 Проверяю статус сервера ReallyWorld...');
         });
     </script>
 </body>
